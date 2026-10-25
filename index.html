@@ -1,0 +1,474 @@
+<title>Spicy Bento Week</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700;900&family=Yomogi&display=swap">
+<style>
+/* Layout: a hand-made recipe booklet — dotted paper, sticker cards tilted a few degrees, speech-bubble tags, crayon doodles */
+:root{
+  --paper:#fff8ec; --dot:#f1dfc4; --ink:#5a3a2a; --soft:#8a6a55;
+  --pink:#ff7aa2; --orange:#ff9f43; --yellow:#ffd25e; --green:#7cc576; --blue:#5eb6e8; --chili:#e8453c;
+  --card:#ffffff; --tape:#ffe7a8cc;
+  --f-title:"Mochiy Pop One","Zen Maru Gothic",system-ui,sans-serif;
+  --f-body:"Zen Maru Gothic",system-ui,sans-serif;
+  --f-hand:"Yomogi","Zen Maru Gothic",cursive;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(var(--dot) 1.4px,transparent 1.6px);
+  background-size:18px 18px;
+  color:var(--ink); font-family:var(--f-body); font-weight:500; font-size:15.5px; line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px)); padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:20px 48px;
+}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+
+/* hero */
+.hero{text-align:center;position:relative;padding-top:8px}
+.ribbon{display:inline-block;background:var(--card);border:2.5px solid var(--ink);border-radius:999px;padding:4px 18px;font-family:var(--f-hand);font-size:17px;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--yellow)}
+.ttl{font-family:var(--f-title);font-size:clamp(40px,10vw,72px);line-height:1.08;margin:14px 0 6px;letter-spacing:.02em;text-wrap:balance}
+.ttl span{display:inline-block;-webkit-text-stroke:2px var(--ink);paint-order:stroke fill;text-shadow:3px 4px 0 #fff, 4px 6px 0 var(--dot)}
+.ttl span:nth-child(5n+1){color:var(--pink);transform:rotate(-4deg)}
+.ttl span:nth-child(5n+2){color:var(--orange);transform:rotate(3deg)}
+.ttl span:nth-child(5n+3){color:var(--green);transform:rotate(-2deg)}
+.ttl span:nth-child(5n+4){color:var(--blue);transform:rotate(4deg)}
+.ttl span:nth-child(5n){color:var(--yellow);transform:rotate(-3deg)}
+.ttl .sp{width:.35em}
+.sub{font-family:var(--f-hand);font-size:19px;color:var(--soft)}
+.badge40{position:absolute;right:0;top:0;width:96px;height:96px;border-radius:50%;background:var(--chili);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--f-title);font-size:13px;line-height:1.15;transform:rotate(12deg);border:3px dashed #fff;outline:3px solid var(--chili)}
+.badge40 b{font-size:28px;display:block}
+.hero-doodles{display:flex;justify-content:center;gap:18px;margin-top:10px}
+.hero-doodles svg{width:52px;height:52px}
+@media (max-width:560px){.badge40{position:static;margin:10px auto 0;width:84px;height:84px}}
+
+/* bubbles */
+.bubbles{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.bub{background:var(--card);border:2.5px solid var(--ink);border-radius:22px;padding:10px 16px;font-size:14.5px;max-width:250px;position:relative;box-shadow:3px 3px 0 var(--dot)}
+.bub::after{content:"";position:absolute;bottom:-10px;left:26px;width:14px;height:14px;background:var(--card);border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg)}
+.bub b{color:var(--pink)}
+.bub.warn{border-color:var(--chili)} .bub.warn::after{border-color:var(--chili)} .bub.warn b{color:var(--chili)}
+
+/* section heads */
+.sec{display:flex;flex-direction:column;gap:18px}
+.head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.head h2{font-family:var(--f-title);font-weight:400;font-size:clamp(24px,5vw,32px);margin:0;padding:4px 18px 2px;border-radius:14px;background:var(--hc,var(--pink));color:#fff;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--ink)}
+.head .note{font-family:var(--f-hand);font-size:17px;color:var(--soft)}
+
+/* recipe cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,370px),1fr));gap:22px}
+.card{background:var(--card);border:2.5px solid var(--ink);border-radius:26px;padding:22px 20px 18px;position:relative;min-width:0}
+.card:nth-child(odd){transform:rotate(-.6deg)} .card:nth-child(even){transform:rotate(.6deg)}
+.card::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:var(--tape);transform:rotate(-3deg);border-radius:3px}
+.card h3{font-family:var(--f-title);font-weight:400;font-size:20px;line-height:1.3;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+.card h3 svg{width:42px;height:42px;flex:none}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+.chip{font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 10px;border:2px solid currentColor}
+.chip.p{color:#d14f7a;background:#ffe3ec}
+.chip.h{color:var(--chili);background:#ffe4df}
+.chip.n{color:#2f7f9e;background:#e0f3fc}
+.card ol{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:7px}
+.card ol li{counter-increment:s;display:grid;grid-template-columns:26px 1fr;gap:8px}
+.card ol li::before{content:counter(s);width:24px;height:24px;border-radius:50%;background:var(--yellow);color:var(--ink);font-weight:900;font-size:13px;display:grid;place-items:center;margin-top:2px}
+.tip{margin-top:12px;font-family:var(--f-hand);font-size:15.5px;background:#fff4d1;border-radius:12px;padding:6px 12px}
+
+/* bento diagram */
+.box{background:var(--card);border:2.5px solid var(--ink);border-radius:26px;padding:20px;display:grid;grid-template-columns:1fr 1.2fr;gap:20px;align-items:center}
+@media (max-width:620px){.box{grid-template-columns:1fr}}
+.box svg{width:100%;max-width:320px;height:auto;margin:0 auto;display:block}
+.box p{margin:0}
+
+/* schedule */
+.week{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px}
+.day{background:var(--card);border:2.5px solid var(--ink);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.day .d{font-family:var(--f-title);color:#fff;background:var(--dc);padding:4px 14px;font-size:17px}
+.day .b{padding:10px 14px 12px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5}
+.day .k{font-size:11.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);display:block}
+.thaw{margin-top:auto;border-top:2px dashed var(--dot);padding-top:6px;color:#2f7f9e}
+
+/* shopping */
+.list{background:var(--card);border:2.5px solid var(--ink);border-radius:26px;padding:20px 22px;background-image:repeating-linear-gradient(transparent 0 35px,#f6e7cf 35px 37px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:2px 20px}
+.list label{display:flex;align-items:center;gap:10px;min-height:37px;cursor:pointer;font-family:var(--f-hand);font-size:18px}
+.list input{appearance:none;width:22px;height:22px;border:2.5px solid var(--ink);border-radius:7px;flex:none;display:grid;place-items:center;background:#fff;cursor:pointer}
+.list input:checked{background:var(--green)}
+.list input:checked::after{content:"✓";color:#fff;font-weight:900;font-size:14px}
+.list input:checked + span{text-decoration:line-through;color:var(--soft)}
+.list input:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.foot{text-align:center;font-family:var(--f-hand);font-size:18px;color:var(--soft)}
+.art{position:absolute;top:-16px;right:-10px;width:116px;background:var(--ac,#ffe3ec);border:2.5px solid var(--ink);border-radius:18px;padding:4px 4px 2px;transform:rotate(6deg);box-shadow:3px 3px 0 var(--dot);background-image:radial-gradient(#ffffff99 2px,transparent 2.5px);background-size:14px 14px;z-index:1}
+.card:nth-child(even) .art{transform:rotate(-5deg)}
+.art svg{width:100%;height:auto;aspect-ratio:200/140;display:block}
+.card h3,.card .meta{padding-right:104px}
+.card::before{left:34%}
+@media (max-width:420px){.art{width:96px}.card h3,.card .meta{padding-right:84px}}
+.card h3 svg{display:none}
+@media (prefers-reduced-motion:no-preference){.art svg{animation:bob 3.2s ease-in-out infinite}.card:nth-child(even) .art svg{animation-delay:-1.6s}@keyframes bob{50%{transform:translateY(-4px) rotate(-1deg)}}}
+@media (prefers-reduced-motion:no-preference){.card{transition:transform .2s}.card:hover{transform:rotate(0) translateY(-3px)}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="onigiri" viewBox="0 0 60 60"><path d="M30 6C20 6 6 34 7 44c1 8 9 10 23 10s22-2 23-10C54 34 40 6 30 6z" fill="#fff" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><rect x="18" y="38" width="24" height="16" rx="3" fill="#3d4a3a"/><circle cx="24" cy="30" r="2.2" fill="#5a3a2a"/><circle cx="36" cy="30" r="2.2" fill="#5a3a2a"/><path d="M27 34q3 3 6 0" fill="none" stroke="#5a3a2a" stroke-width="2" stroke-linecap="round"/><circle cx="20" cy="34" r="3" fill="#ffb3c7"/><circle cx="40" cy="34" r="3" fill="#ffb3c7"/></symbol>
+    <symbol id="chili" viewBox="0 0 60 60"><path d="M40 14c-4 0-6 3-7 7-3 12-12 22-24 27 10 4 26 0 33-12 4-7 5-15 2-20" fill="#e8453c" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M38 15c2-5 6-7 10-6" fill="none" stroke="#7cc576" stroke-width="4" stroke-linecap="round"/><path d="M33 22q-2 8-9 14" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/></symbol>
+    <symbol id="egg" viewBox="0 0 60 60"><ellipse cx="30" cy="33" rx="19" ry="22" fill="#fff" stroke="#5a3a2a" stroke-width="3"/><circle cx="30" cy="36" r="10" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2.5"/><circle cx="26" cy="33" r="1.8" fill="#5a3a2a"/><circle cx="34" cy="33" r="1.8" fill="#5a3a2a"/><path d="M28 38q2 2 4 0" fill="none" stroke="#5a3a2a" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="fish" viewBox="0 0 60 60"><path d="M8 30c8-12 26-16 38-6l8-6v24l-8-6c-12 10-30 6-38-6z" fill="#ff9f8a" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><circle cx="18" cy="28" r="2.5" fill="#5a3a2a"/><path d="M26 22q4 8 0 16M33 22q4 8 0 16" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <symbol id="steak" viewBox="0 0 60 60"><path d="M10 26c0-12 16-18 30-14s14 18 8 26-26 12-34 4c-3-3-4-10-4-16z" fill="#c8574a" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M14 20c6-6 20-8 28-2" fill="none" stroke="#fff3df" stroke-width="5" stroke-linecap="round"/><circle cx="34" cy="34" r="5" fill="#fff3df" stroke="#5a3a2a" stroke-width="2"/></symbol>
+    <symbol id="scallop" viewBox="0 0 60 60"><path d="M30 50L8 24c6-14 38-14 44 0z" fill="#ffd25e" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M30 48L18 20M30 48L30 16M30 48L42 20" stroke="#5a3a2a" stroke-width="2" fill="none"/><rect x="24" y="48" width="12" height="6" rx="2" fill="#ffd25e" stroke="#5a3a2a" stroke-width="2.5"/></symbol>
+    <symbol id="bowl" viewBox="0 0 60 60"><path d="M6 28h48c0 14-10 24-24 24S6 42 6 28z" fill="#5eb6e8" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M12 28c2-8 10-12 18-12s16 4 18 12" fill="#fff" stroke="#5a3a2a" stroke-width="3"/><path d="M40 6l-6 20M46 8l-8 18" stroke="#5a3a2a" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="40" r="2" fill="#fff"/><circle cx="34" cy="42" r="2" fill="#fff"/></symbol>
+    <symbol id="tofu" viewBox="0 0 60 60"><path d="M12 22l18-10 18 10v20L30 52 12 42z" fill="#fff" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M12 22l18 10 18-10M30 32v20" fill="none" stroke="#5a3a2a" stroke-width="2.5"/><circle cx="22" cy="38" r="3" fill="#e8453c"/><circle cx="40" cy="36" r="2.5" fill="#e8453c"/><circle cx="30" cy="22" r="2.5" fill="#e8453c"/></symbol>
+    <symbol id="chick" viewBox="0 0 60 60"><path d="M14 40c-6-10 2-26 18-26 12 0 20 8 18 18-1 8-8 14-18 16-8 2-15-1-18-8z" fill="#ff9f43" stroke="#5a3a2a" stroke-width="3"/><path d="M44 40l10 8M48 46l-4 8" stroke="#5a3a2a" stroke-width="3" stroke-linecap="round"/><circle cx="54" cy="47" r="3.5" fill="#fff" stroke="#5a3a2a" stroke-width="2"/><path d="M22 26q6-4 12 0" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".7"/></symbol>
+    <symbol id="leaf" viewBox="0 0 60 60"><path d="M12 48C10 26 26 10 50 10c0 24-16 40-38 38z" fill="#7cc576" stroke="#5a3a2a" stroke-width="3" stroke-linejoin="round"/><path d="M14 46L40 20" stroke="#5a3a2a" stroke-width="2.5" stroke-linecap="round"/></symbol>
+    <!-- kawaii face, 40x20 -->
+    <symbol id="face" viewBox="0 0 40 20"><circle cx="12" cy="8" r="2.4" fill="#5a3a2a"/><circle cx="28" cy="8" r="2.4" fill="#5a3a2a"/><path d="M17 11q3 3.5 6 0" fill="none" stroke="#5a3a2a" stroke-width="2" stroke-linecap="round"/><ellipse cx="5" cy="13" rx="4" ry="2.6" fill="#ff8fb0" opacity=".8"/><ellipse cx="35" cy="13" rx="4" ry="2.6" fill="#ff8fb0" opacity=".8"/></symbol>
+    <symbol id="steam" viewBox="0 0 60 40"><g fill="none" stroke="#c9b29a" stroke-width="3" stroke-linecap="round"><path d="M12 36c-6-8 6-12 0-20s4-12 2-16"/><path d="M30 36c-6-8 6-12 0-20s4-12 2-16"/><path d="M48 36c-6-8 6-12 0-20s4-12 2-16"/></g></symbol>
+
+    <!-- dish illustrations, 200x140 -->
+    <symbol id="d-chicken" viewBox="0 0 200 140">
+      <use href="#steam" x="70" y="4" width="60" height="40"/>
+      <ellipse cx="100" cy="106" rx="86" ry="26" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="100" cy="102" rx="66" ry="17" fill="#fde9d4"/>
+      <path d="M34 96c-2-16 14-26 30-22s20 18 12 26-40 8-42-4z" fill="#d9542f" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M126 98c-2-14 12-22 26-18s16 16 10 22-34 8-36-4z" fill="#d9542f" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M70 90c-4-22 20-36 42-30s26 24 16 34-56 12-58-4z" fill="#e2632f" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M80 70q12-10 28-6" fill="none" stroke="#ffd0a6" stroke-width="4" stroke-linecap="round"/>
+      <use href="#face" x="80" y="74" width="40" height="20"/>
+      <g fill="#fff" stroke="#5a3a2a" stroke-width="1"><ellipse cx="50" cy="84" rx="2.4" ry="1.4"/><ellipse cx="60" cy="90" rx="2.4" ry="1.4"/><ellipse cx="140" cy="88" rx="2.4" ry="1.4"/><ellipse cx="150" cy="94" rx="2.4" ry="1.4"/><ellipse cx="124" cy="72" rx="2.4" ry="1.4"/></g>
+      <g fill="#fff" stroke="#7cc576" stroke-width="3"><circle cx="44" cy="74" r="4"/><circle cx="160" cy="80" r="4"/><circle cx="104" cy="58" r="4"/></g>
+    </symbol>
+
+    <symbol id="d-soboro" viewBox="0 0 200 140">
+      <path d="M28 66h144c0 36-30 62-72 62S28 102 28 66z" fill="#5eb6e8" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M44 92q12 8 22 0t22 0 22 0 22 0 22 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+      <ellipse cx="100" cy="66" rx="72" ry="13" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="#8a4b2a" stroke="#5a3a2a" stroke-width="1.5"><circle cx="46" cy="60" r="6"/><circle cx="58" cy="54" r="7"/><circle cx="72" cy="58" r="7"/><circle cx="64" cy="64" r="6"/><circle cx="84" cy="54" r="6"/><circle cx="88" cy="63" r="6"/><circle cx="52" cy="66" r="5"/><circle cx="76" cy="48" r="5"/></g>
+      <g fill="#7cc576" stroke="#5a3a2a" stroke-width="2"><ellipse cx="104" cy="52" rx="10" ry="6" transform="rotate(-20 104 52)"/><ellipse cx="110" cy="62" rx="10" ry="6" transform="rotate(15 110 62)"/></g>
+      <ellipse cx="142" cy="56" rx="22" ry="15" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <circle cx="142" cy="57" r="9" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2"/>
+      <g fill="#e8453c"><rect x="60" y="44" width="4" height="2" rx="1"/><rect x="82" y="66" width="4" height="2" rx="1"/><rect x="50" y="52" width="3" height="2" rx="1"/></g>
+      <use href="#face" x="80" y="96" width="40" height="20"/>
+    </symbol>
+
+    <symbol id="d-eggs" viewBox="0 0 200 140">
+      <ellipse cx="100" cy="108" rx="84" ry="22" fill="#ffd25e" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="100" cy="104" rx="66" ry="14" fill="#ffe7a0"/>
+      <g transform="rotate(-8 64 78)"><ellipse cx="64" cy="78" rx="34" ry="26" fill="#e8b77a" stroke="#5a3a2a" stroke-width="3"/><ellipse cx="64" cy="78" rx="27" ry="20" fill="#fff"/><circle cx="64" cy="78" r="15" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2"/><circle cx="64" cy="78" r="9" fill="#ffbe55"/></g>
+      <use href="#face" x="46" y="72" width="36" height="18"/>
+      <g transform="rotate(8 136 80)"><ellipse cx="136" cy="80" rx="34" ry="26" fill="#e8b77a" stroke="#5a3a2a" stroke-width="3"/><ellipse cx="136" cy="80" rx="27" ry="20" fill="#fff"/><circle cx="136" cy="80" r="15" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2"/><circle cx="136" cy="80" r="9" fill="#ffbe55"/></g>
+      <use href="#face" x="118" y="74" width="36" height="18"/>
+      <g fill="#e8453c"><rect x="96" y="54" width="5" height="2.5" rx="1.2" transform="rotate(30 98 55)"/><rect x="104" y="64" width="5" height="2.5" rx="1.2"/><rect x="92" y="70" width="4" height="2" rx="1"/></g>
+      <path d="M96 28l4-10 4 10 10 4-10 4-4 10-4-10-10-4z" fill="#fff" stroke="#5a3a2a" stroke-width="2" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="d-namul" viewBox="0 0 200 140">
+      <path d="M40 74h120c0 30-26 52-60 52S40 104 40 74z" fill="#ff7aa2" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="#fff" opacity=".85"><circle cx="58" cy="94" r="4"/><circle cx="142" cy="94" r="4"/><circle cx="100" cy="114" r="4"/><circle cx="78" cy="110" r="3"/><circle cx="122" cy="110" r="3"/></g>
+      <g fill="#5fae5a" stroke="#5a3a2a" stroke-width="2.5"><ellipse cx="70" cy="66" rx="20" ry="13"/><ellipse cx="130" cy="66" rx="20" ry="13"/><ellipse cx="100" cy="52" rx="26" ry="18"/><ellipse cx="86" cy="68" rx="18" ry="12"/><ellipse cx="114" cy="68" rx="18" ry="12"/></g>
+      <g fill="none" stroke="#3d8a3a" stroke-width="2" stroke-linecap="round"><path d="M88 50q12-8 24 0"/><path d="M62 64q8-4 16 0"/><path d="M122 64q8-4 16 0"/></g>
+      <g fill="#fff8ec" stroke="#5a3a2a" stroke-width="1"><ellipse cx="94" cy="44" rx="2.4" ry="1.4"/><ellipse cx="108" cy="48" rx="2.4" ry="1.4"/><ellipse cx="76" cy="60" rx="2.4" ry="1.4"/><ellipse cx="126" cy="62" rx="2.4" ry="1.4"/></g>
+      <g stroke="#e8453c" stroke-width="2" stroke-linecap="round"><path d="M100 40l6-8"/><path d="M84 54l-4-8"/><path d="M118 56l6-6"/></g>
+      <use href="#face" x="80" y="86" width="40" height="20"/>
+    </symbol>
+
+    <symbol id="d-salmon" viewBox="0 0 200 140">
+      <ellipse cx="100" cy="106" rx="88" ry="26" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="100" cy="102" rx="70" ry="17" fill="#e0f3fc"/>
+      <ellipse cx="66" cy="88" rx="34" ry="22" fill="#d98a3e" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="66" cy="82" rx="30" ry="15" fill="#f0b066"/>
+      <ellipse cx="124" cy="86" rx="34" ry="22" fill="#d98a3e" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="124" cy="80" rx="30" ry="15" fill="#f0b066"/>
+      <g fill="#ffe0b0"><circle cx="54" cy="76" r="1.6"/><circle cx="80" cy="78" r="1.6"/><circle cx="70" cy="90" r="1.6"/><circle cx="112" cy="74" r="1.6"/><circle cx="138" cy="76" r="1.6"/><circle cx="130" cy="88" r="1.6"/></g>
+      <g fill="#ff9f8a"><circle cx="58" cy="86" r="2"/><circle cx="120" cy="84" r="2"/></g>
+      <use href="#face" x="48" y="78" width="36" height="18"/>
+      <use href="#face" x="106" y="76" width="36" height="18"/>
+      <path d="M156 96c0-10 18-10 18 0 0 6-18 6-18 0z" fill="#cfe6a8" stroke="#5a3a2a" stroke-width="2.5"/>
+      <path d="M160 92q5-6 10 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      <path d="M150 50a18 18 0 0 1 32 14z" fill="#ffd25e" stroke="#5a3a2a" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M156 52l12 9M164 48l4 13M174 52l-6 9" stroke="#fff6c8" stroke-width="2"/>
+    </symbol>
+
+    <symbol id="d-picanha" viewBox="0 0 200 140">
+      <rect x="14" y="70" width="172" height="52" rx="22" fill="#e0a96d" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M30 84q40 6 80-2" fill="none" stroke="#c98a4a" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="176" cy="96" r="5" fill="#fff8ec" stroke="#5a3a2a" stroke-width="2.5"/>
+      <g stroke="#5a3a2a" stroke-width="2.5" stroke-linejoin="round">
+        <path d="M30 94c4-22 20-34 28-32l6 40c-12 4-28 2-34-8z" fill="#7a3b2a"/>
+        <path d="M36 92c4-16 14-24 20-24l4 30c-8 2-18 0-24-6z" fill="#f08a8a"/>
+        <path d="M58 98c2-24 18-38 28-38l4 44c-12 4-26 2-32-6z" fill="#7a3b2a"/>
+        <path d="M64 96c2-18 14-28 20-28l3 32c-8 2-18 1-23-4z" fill="#f08a8a"/>
+        <path d="M88 100c0-26 16-42 28-42l2 46c-12 4-26 4-30-4z" fill="#7a3b2a"/>
+        <path d="M94 98c0-20 12-32 20-32l1 34c-8 2-17 2-21-2z" fill="#f08a8a"/>
+      </g>
+      <g fill="#fff3df" stroke="#5a3a2a" stroke-width="2"><path d="M56 62q6-6 12 0"/><path d="M84 60q6-6 12 0"/><path d="M114 58q6-6 12 0"/></g>
+      <use href="#face" x="88" y="78" width="32" height="16"/>
+      <ellipse cx="150" cy="96" rx="24" ry="12" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="150" cy="94" rx="18" ry="7" fill="#e8453c"/>
+      <path d="M144 92q6-3 10 0" fill="none" stroke="#ff9f8a" stroke-width="2" stroke-linecap="round"/>
+      <g fill="#7cc576"><circle cx="134" cy="72" r="3"/><circle cx="142" cy="66" r="2.5"/></g>
+    </symbol>
+
+    <symbol id="d-scallop" viewBox="0 0 200 140">
+      <use href="#steam" x="74" y="0" width="52" height="34"/>
+      <ellipse cx="100" cy="104" rx="88" ry="28" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="100" cy="98" rx="64" ry="20" fill="#fff1cc"/>
+      <g fill="none" stroke="#f2c86a" stroke-width="4" stroke-linecap="round"><path d="M44 96q14-14 28 0t28 0 28 0 28 0"/><path d="M50 106q14-12 28 0t28 0 28 0 24 0"/><path d="M56 86q14-12 28 0t28 0 28 0 20 0"/></g>
+      <g fill="#7cc576" stroke="#5a3a2a" stroke-width="1.5"><ellipse cx="50" cy="84" rx="8" ry="4"/><ellipse cx="150" cy="86" rx="8" ry="4"/></g>
+      <g fill="#f4a3a8"><path d="M60 72l6 2-2 5-6-2z"/><path d="M140 74l6 2-2 5-6-2z"/><path d="M100 110l6 2-2 5-6-2z"/></g>
+      <g stroke="#5a3a2a" stroke-width="2.5">
+        <path d="M58 78v10c0 6 28 6 28 0V78" fill="#fff3df"/><ellipse cx="72" cy="78" rx="14" ry="6" fill="#c98a3a"/>
+        <path d="M114 78v10c0 6 28 6 28 0V78" fill="#fff3df"/><ellipse cx="128" cy="78" rx="14" ry="6" fill="#c98a3a"/>
+        <path d="M84 64v12c0 7 32 7 32 0V64" fill="#fff3df"/><ellipse cx="100" cy="64" rx="16" ry="7" fill="#c98a3a"/>
+      </g>
+      <use href="#face" x="86" y="70" width="28" height="14"/>
+      <g fill="#e8453c"><rect x="64" y="96" width="4" height="2" rx="1"/><rect x="120" y="98" width="4" height="2" rx="1"/><rect x="92" y="92" width="4" height="2" rx="1"/><rect x="140" y="94" width="3" height="2" rx="1"/></g>
+    </symbol>
+
+    <symbol id="d-bulgogi" viewBox="0 0 200 140">
+      <path d="M28 66h144c0 36-30 62-72 62S28 102 28 66z" fill="#ff9f43" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="none" stroke="#fff" stroke-width="3" opacity=".7"><path d="M48 90h104"/><path d="M58 104h84"/></g>
+      <ellipse cx="100" cy="66" rx="72" ry="13" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="none" stroke-linecap="round"><path d="M44 62q10-12 22-2t20-4" stroke="#5a3a2a" stroke-width="9"/><path d="M44 62q10-12 22-2t20-4" stroke="#9b4a2e" stroke-width="5"/><path d="M114 60q12-10 22 0t20-4" stroke="#5a3a2a" stroke-width="9"/><path d="M114 60q12-10 22 0t20-4" stroke="#9b4a2e" stroke-width="5"/><path d="M60 70q14-6 26 0" stroke="#5a3a2a" stroke-width="9"/><path d="M60 70q14-6 26 0" stroke="#b5563a" stroke-width="5"/><path d="M120 70q12-6 26 0" stroke="#5a3a2a" stroke-width="9"/><path d="M120 70q12-6 26 0" stroke="#b5563a" stroke-width="5"/></g>
+      <g fill="none" stroke="#fff8ec" stroke-width="2.5" stroke-linecap="round"><path d="M72 56q6-6 12 0"/><path d="M134 66q6-6 12 0"/></g>
+      <path d="M78 54c-6-14 10-22 20-18 10-8 28-2 26 10 8 6 0 18-12 16-8 6-26 6-30-2-8 0-10-4-4-6z" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <circle cx="100" cy="50" r="11" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2"/>
+      <use href="#face" x="88" y="44" width="24" height="12"/>
+      <g fill="#7cc576"><circle cx="58" cy="54" r="3"/><circle cx="146" cy="56" r="3"/><circle cx="70" cy="72" r="2.5"/></g>
+      <g fill="#e8453c"><rect x="126" y="50" width="4" height="2" rx="1"/><rect x="66" y="62" width="4" height="2" rx="1"/></g>
+      <use href="#face" x="80" y="96" width="40" height="20"/>
+    </symbol>
+
+    <symbol id="d-mapo" viewBox="0 0 200 140">
+      <use href="#steam" x="74" y="0" width="52" height="34"/>
+      <path d="M28 66h144c0 36-30 62-72 62S28 102 28 66z" fill="#fff" stroke="#5a3a2a" stroke-width="3"/>
+      <path d="M36 86q64 14 128 0" fill="none" stroke="#5eb6e8" stroke-width="4"/>
+      <path d="M42 98q58 12 116 0" fill="none" stroke="#5eb6e8" stroke-width="2.5"/>
+      <ellipse cx="100" cy="66" rx="72" ry="13" fill="#d9362b" stroke="#5a3a2a" stroke-width="3"/>
+      <ellipse cx="80" cy="62" rx="20" ry="4" fill="#ef6a4a"/>
+      <g fill="#7a2e1e"><circle cx="50" cy="66" r="3"/><circle cx="60" cy="72" r="2.5"/><circle cx="148" cy="64" r="3"/><circle cx="140" cy="72" r="2.5"/><circle cx="104" cy="74" r="2.5"/></g>
+      <g stroke="#5a3a2a" stroke-width="2.5"><rect x="58" y="44" width="28" height="24" rx="6" fill="#fff"/><rect x="92" y="38" width="30" height="26" rx="6" fill="#fff"/><rect x="128" y="48" width="24" height="20" rx="5" fill="#fff"/></g>
+      <g fill="#d9362b" opacity=".55"><path d="M58 58h28v4c0 3-3 6-6 6H64c-3 0-6-3-6-6z"/><path d="M128 60h24v3c0 3-2 5-5 5h-14c-3 0-5-2-5-5z"/></g>
+      <use href="#face" x="62" y="48" width="20" height="10"/>
+      <use href="#face" x="96" y="44" width="22" height="11"/>
+      <g fill="#fff" stroke="#7cc576" stroke-width="3"><circle cx="48" cy="58" r="3.5"/><circle cx="160" cy="62" r="3.5"/><circle cx="126" cy="42" r="3.5"/></g>
+      <use href="#face" x="80" y="100" width="40" height="20"/>
+    </symbol>
+
+    <symbol id="d-soba" viewBox="0 0 200 140">
+      <use href="#steam" x="40" y="0" width="52" height="34"/>
+      <path d="M150 10l-40 54M166 14l-48 52" stroke="#c98a4a" stroke-width="5" stroke-linecap="round"/>
+      <path d="M28 66h144c0 36-30 62-72 62S28 102 28 66z" fill="#2f5d7c" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="#fff" opacity=".8"><circle cx="56" cy="92" r="5"/><circle cx="144" cy="92" r="5"/><circle cx="100" cy="114" r="5"/></g>
+      <ellipse cx="100" cy="66" rx="72" ry="13" fill="#d9a35e" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="none" stroke="#8a6a4a" stroke-width="3" stroke-linecap="round"><path d="M42 66q20-6 40 2t40-2 34 2"/><path d="M48 72q20-6 40 2t40-2 26 2"/></g>
+      <g stroke="#5a3a2a" stroke-width="2.5"><ellipse cx="62" cy="58" rx="16" ry="8" fill="#6b2f2f"/><ellipse cx="62" cy="57" rx="12" ry="5" fill="#e7a0a0"/><ellipse cx="86" cy="54" rx="16" ry="8" fill="#6b2f2f"/><ellipse cx="86" cy="53" rx="12" ry="5" fill="#e7a0a0"/></g>
+      <g fill="#7cc576" stroke="#5a3a2a" stroke-width="2"><ellipse cx="112" cy="58" rx="10" ry="5" transform="rotate(-15 112 58)"/><ellipse cx="118" cy="66" rx="9" ry="5" transform="rotate(20 118 66)"/></g>
+      <ellipse cx="142" cy="60" rx="18" ry="12" fill="#fff" stroke="#5a3a2a" stroke-width="2.5"/>
+      <circle cx="142" cy="61" r="7" fill="#ff9f43" stroke="#5a3a2a" stroke-width="2"/>
+      <g fill="#e8453c"><rect x="100" y="66" width="4" height="2" rx="1"/><rect x="74" y="66" width="4" height="2" rx="1"/></g>
+      <use href="#face" x="80" y="96" width="40" height="20"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="badge40"><span><b>40g+</b>protein<br>every meal</span></div>
+  <div class="ribbon">ピリ辛で元気！ always spicy ♪</div>
+  <h1 class="ttl" aria-label="Spicy Bento Week"><span>S</span><span>p</span><span>i</span><span>c</span><span>y</span><span class="sp"> </span><span>B</span><span>e</span><span>n</span><span>t</span><span>o</span><br><span>W</span><span>e</span><span>e</span><span>k</span></h1>
+  <div class="sub">5 office lunches + 6 cozy dinners, all from your freezer</div>
+  <div class="hero-doodles" aria-hidden="true">
+    <svg><use href="#onigiri"/></svg><svg><use href="#chili"/></svg><svg><use href="#egg"/></svg><svg><use href="#leaf"/></svg><svg><use href="#chili"/></svg>
+  </div>
+</header>
+
+<div class="bubbles">
+  <div class="bub"><b>Lunches</b> are cooked on Sunday and eaten Mon–Fri. Freeze the Thu/Fri boxes if you like.</div>
+  <div class="bub"><b>Dinners</b>: cook fresh, or cook 2 and keep 1 in the fridge for tomorrow.</div>
+  <div class="bub"><b>Fresh only</b>: scallops, salmon and picanha don't reheat well.</div>
+  <div class="bub warn"><b>Check!</b> Your Lao Gan Ma looks past its best-before (Jun 2026). Smell it first; use gochujang + chili powder if it's off.</div>
+</div>
+
+<section class="sec">
+  <div class="head"><h2 style="--hc:var(--pink)">Sunday prep · 5 bentos</h2><span class="note">about 2 hours ✿</span></div>
+
+  <div class="box">
+    <svg viewBox="0 0 320 210" role="img" aria-label="How to pack one bento box">
+      <rect x="6" y="6" width="308" height="198" rx="28" fill="#ff7aa2" stroke="#5a3a2a" stroke-width="4"/>
+      <rect x="20" y="20" width="280" height="170" rx="18" fill="#fff8ec" stroke="#5a3a2a" stroke-width="3"/>
+      <line x1="140" y1="20" x2="140" y2="190" stroke="#5a3a2a" stroke-width="3"/>
+      <line x1="140" y1="112" x2="300" y2="112" stroke="#5a3a2a" stroke-width="3"/>
+      <g fill="#fff" stroke="#e9dccb" stroke-width="2"><circle cx="50" cy="60" r="10"/><circle cx="72" cy="55" r="10"/><circle cx="96" cy="62" r="10"/><circle cx="116" cy="54" r="9"/><circle cx="46" cy="88" r="10"/><circle cx="70" cy="92" r="10"/><circle cx="94" cy="86" r="10"/><circle cx="116" cy="94" r="9"/><circle cx="52" cy="122" r="10"/><circle cx="76" cy="126" r="10"/><circle cx="102" cy="120" r="10"/><circle cx="56" cy="156" r="10"/><circle cx="82" cy="160" r="10"/><circle cx="108" cy="152" r="9"/></g>
+      <text x="80" y="182" text-anchor="middle" font-family="Yomogi, cursive" font-size="15" fill="#5a3a2a">rice 150g</text>
+      <g><rect x="158" y="34" width="38" height="24" rx="10" fill="#d9663b" stroke="#5a3a2a" stroke-width="2.5" transform="rotate(-8 177 46)"/><rect x="200" y="36" width="38" height="24" rx="10" fill="#d9663b" stroke="#5a3a2a" stroke-width="2.5" transform="rotate(6 219 48)"/><rect x="240" y="32" width="40" height="24" rx="10" fill="#d9663b" stroke="#5a3a2a" stroke-width="2.5" transform="rotate(-4 260 44)"/></g>
+      <text x="220" y="96" text-anchor="middle" font-family="Yomogi, cursive" font-size="15" fill="#5a3a2a">protein ~200g</text>
+      <use href="#egg" x="150" y="118" width="58" height="58"/>
+      <g fill="#7cc576" stroke="#5a3a2a" stroke-width="2"><ellipse cx="236" cy="140" rx="14" ry="8"/><ellipse cx="256" cy="134" rx="14" ry="8"/><ellipse cx="248" cy="152" rx="14" ry="8"/><ellipse cx="274" cy="148" rx="12" ry="7"/></g>
+      <text x="196" y="184" text-anchor="middle" font-family="Yomogi, cursive" font-size="14" fill="#5a3a2a">egg</text>
+      <text x="256" y="184" text-anchor="middle" font-family="Yomogi, cursive" font-size="14" fill="#5a3a2a">namul</text>
+    </svg>
+    <p><b>Pack every box the same way:</b> about 150g rice, one protein portion, a spicy shoyu egg, spinach namul, and cucumber or kimchi in any gap. Reheat 2–2.5 min in the office microwave.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card">
+      <div class="art" style="--ac:#ffe3ec"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Gochujang-honey chicken ×3"><use href="#d-chicken" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#chick"/></svg>Gochujang-honey chicken ×3</h3>
+      <div class="meta"><span class="chip p">~44g protein w/ egg</span><span class="chip h">🌶🌶 spicy</span><span class="chip n">Mon–Wed</span></div>
+      <ol>
+        <li>Mix 3 tbsp gochujang, 1 tbsp each honey, soy and mirin, 1 tsp ginger paste, 2 garlic cloves, 1 tsp sesame oil and chili powder.</li>
+        <li>Coat 600g thighs. Marinate 30 min or overnight.</li>
+        <li>Air fry at 200°C for 18–20 min, flipping halfway, until 75°C inside.</li>
+        <li>Rest 5 min, slice, split into 3.</li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#e0f3fc"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Spicy miso beef soboro ×2"><use href="#d-soboro" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#bowl"/></svg>Spicy miso beef soboro ×2</h3>
+      <div class="meta"><span class="chip p">~46g protein w/ egg</span><span class="chip h">🌶🌶 spicy</span><span class="chip n">Thu–Fri</span></div>
+      <ol>
+        <li>Brown 1 diced onion in a little oil.</li>
+        <li>Add 400g beef mince and cook until crumbly.</li>
+        <li>Stir in 1.5 tbsp miso, 1 tbsp gochujang, 1 tbsp each sake and mirin, 1 tsp ginger and 1 tsp honey.</li>
+        <li>Cook until almost dry, then split into 2.</li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#fff1c2"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Spicy shoyu eggs ×6–7"><use href="#d-eggs" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#egg"/></svg>Spicy shoyu eggs ×6–7</h3>
+      <div class="meta"><span class="chip p">+6g each</span><span class="chip h">🌶 a little</span></div>
+      <ol>
+        <li>Boil 6.5 min, chill in ice water, then peel.</li>
+        <li>Soak overnight in 4 tbsp soy, 2 tbsp mirin, 4 tbsp water and 1 tsp chili crisp.</li>
+      </ol>
+      <div class="tip">Keeps 4 days. Extras make a great breakfast!</div>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#e3f5df"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Spinach namul"><use href="#d-namul" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#leaf"/></svg>Spinach namul</h3>
+      <div class="meta"><span class="chip h">🌶 your call</span></div>
+      <ol>
+        <li>Thaw 300g frozen spinach and squeeze it really dry.</li>
+        <li>Toss with 1 tsp sesame oil, salt, 1 grated garlic clove and chili powder.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="head"><h2 style="--hc:var(--orange)">6 dinners</h2><span class="note">serve with rice, noodles or pasta ♪</span></div>
+  <div class="grid">
+    <article class="card">
+      <div class="art" style="--ac:#ffe6dc"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Salmon miso patties"><use href="#d-salmon" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#fish"/></svg>Salmon miso patties</h3>
+      <div class="meta"><span class="chip p">~40g protein</span><span class="chip h">🌶 + wasabi</span><span class="chip n">makes 4 dinners</span></div>
+      <ol>
+        <li>Mix 800g salmon shreds, 3 tbsp panko, 1 egg, 1 tbsp miso, 1 tsp ginger, spring onion and chili powder.</li>
+        <li>Shape 8 patties. Air fry 2 per dinner at 200°C for 12 min, flipping at 8.</li>
+        <li>Serve with wasabi mayo: wasabi powder, mayo and lemon.</li>
+      </ol>
+      <div class="tip">Freeze extras raw between baking paper. Air fry from frozen 15–16 min.</div>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#fbe3d2"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Picanha bowl"><use href="#d-picanha" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#steak"/></svg>Picanha bowl</h3>
+      <div class="meta"><span class="chip p">~40g protein</span><span class="chip h">🌶🌶 dip</span><span class="chip n">1 steak = 2 dinners</span></div>
+      <ol>
+        <li>Score the fat cap and salt well, ideally 1 hr ahead.</li>
+        <li>Air fry at 220°C for 10–12 min for medium-rare, flipping once. Rest 10 min.</li>
+        <li>Slice thin over rice. Dip: 1 tbsp gochujang, 1 tbsp Chinkiang vinegar, 1 tsp honey, 1 tsp sesame oil.</li>
+      </ol>
+      <div class="tip">Keep half unsliced. Slice cold and flash-sear tomorrow.</div>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#fff1c2"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Scallop chili cream pasta"><use href="#d-scallop" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#scallop"/></svg>Scallop chili cream pasta</h3>
+      <div class="meta"><span class="chip p">~45g protein</span><span class="chip h">🌶🌶 spicy</span><span class="chip n">eat fresh</span></div>
+      <ol>
+        <li>Pat 250g scallops very dry, salt, sear 90 sec per side on high. Set aside.</li>
+        <li>Crisp 2–3 slices of prosciutto in the same pan and break up.</li>
+        <li>Add garlic, spinach, 150ml cream and 1 tbsp chili crisp. Simmer 2 min.</li>
+        <li>Toss with 100g cooked pasta and a splash of pasta water. Top with scallops and prosciutto.</li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#ffe4df"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Spicy bulgogi"><use href="#d-bulgogi" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#chili"/></svg>Spicy bulgogi</h3>
+      <div class="meta"><span class="chip p">~45g protein w/ egg</span><span class="chip h">🌶🌶🌶 hot</span><span class="chip n">1 pack</span></div>
+      <ol>
+        <li>Marinate 200g sliced beef 15 min in 1 tbsp gochujang, 1 tbsp soy, 1 tsp honey, 1 tsp sesame oil, garlic and ½ sliced onion.</li>
+        <li>Stir-fry on high for 3–4 min.</li>
+        <li>Serve over rice with a fried egg.</li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#ffe3ec"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Mapo tofu with pork"><use href="#d-mapo" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#tofu"/></svg>Mapo tofu with pork</h3>
+      <div class="meta"><span class="chip p">~45g protein</span><span class="chip h">🌶🌶🌶 hot</span><span class="chip n">makes 2</span></div>
+      <ol>
+        <li>Brown 340g pork mince (both 170g packs).</li>
+        <li>Add garlic, ginger, 2 tbsp chili crisp and 1 tbsp gochujang. Fry 1 min.</li>
+        <li>Add 250ml water with 1 tsp Weipa and 1 tsp miso.</li>
+        <li>Add 1 block of cubed firm tofu, simmer 5 min, thicken with cornstarch slurry. Top with spring onion.</li>
+      </ol>
+    </article>
+    <article class="card">
+      <div class="art" style="--ac:#e0f3fc"><svg viewBox="0 0 200 140" role="img" aria-label="Illustration of Smoked duck & spinach soba"><use href="#d-soba" width="200" height="140"/></svg></div>
+      <h3><svg><use href="#bowl"/></svg>Smoked duck & spinach soba</h3>
+      <div class="meta"><span class="chip p">~45g protein</span><span class="chip h">🌶 add more!</span><span class="chip n">spare meal</span></div>
+      <ol>
+        <li>Make broth from 1 dashi packet, 1 tbsp miso and chili.</li>
+        <li>Add spinach, then 200g sliced smoked duck to warm through.</li>
+        <li>Pour over cooked soba. Top with a shoyu egg.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="head"><h2 style="--hc:var(--blue)">This week</h2><span class="note">move "thaw" items to the fridge each night</span></div>
+  <div class="week">
+    <div class="day" style="--dc:var(--pink)"><div class="d">Sun</div><div class="b"><div><span class="k">Lunch</span>Prep day!</div><div><span class="k">Dinner</span>Picanha bowl (eat half)</div><div class="thaw">❄ thaw: —</div></div></div>
+    <div class="day" style="--dc:var(--orange)"><div class="d">Mon</div><div class="b"><div><span class="k">Lunch</span>Chicken bento</div><div><span class="k">Dinner</span>Picanha leftovers</div><div class="thaw">❄ thaw: pork mince ×2</div></div></div>
+    <div class="day" style="--dc:var(--yellow)"><div class="d" style="color:var(--ink)">Tue</div><div class="b"><div><span class="k">Lunch</span>Chicken bento</div><div><span class="k">Dinner</span>Mapo tofu</div><div class="thaw">❄ thaw: —</div></div></div>
+    <div class="day" style="--dc:var(--green)"><div class="d">Wed</div><div class="b"><div><span class="k">Lunch</span>Chicken bento</div><div><span class="k">Dinner</span>Mapo tofu leftovers</div><div class="thaw">❄ thaw: salmon 800g</div></div></div>
+    <div class="day" style="--dc:var(--blue)"><div class="d">Thu</div><div class="b"><div><span class="k">Lunch</span>Beef soboro bento</div><div><span class="k">Dinner</span>Salmon patties (freeze 6 raw)</div><div class="thaw">❄ thaw: scallops 250g</div></div></div>
+    <div class="day" style="--dc:var(--pink)"><div class="d">Fri</div><div class="b"><div><span class="k">Lunch</span>Beef soboro bento</div><div><span class="k">Dinner</span>Scallop chili cream pasta</div><div class="thaw">❄ thaw: sliced beef 200g</div></div></div>
+    <div class="day" style="--dc:var(--chili)"><div class="d">Sat</div><div class="b"><div><span class="k">Lunch</span>Free</div><div><span class="k">Dinner</span>Spicy bulgogi</div><div class="thaw">❄ thaw: chicken 900g (next prep)</div></div></div>
+  </div>
+  <div class="bubbles"><div class="bub"><b>Next week:</b> turn the 900g chicken into turmeric-ginger air-fried bentos with your Singlong pastes.</div></div>
+</section>
+
+<section class="sec">
+  <div class="head"><h2 style="--hc:var(--green)">Shopping list</h2><span class="note">one trip for the whole week ✓</span></div>
+  <div class="list" id="shop">
+    <label><input type="checkbox" id="s1"><span>Eggs ×18</span></label>
+    <label><input type="checkbox" id="s2"><span>Firm tofu ×2</span></label>
+    <label><input type="checkbox" id="s3"><span>Spring onions</span></label>
+    <label><input type="checkbox" id="s4"><span>Garlic</span></label>
+    <label><input type="checkbox" id="s5"><span>Cucumbers ×3</span></label>
+    <label><input type="checkbox" id="s6"><span>Broccoli or cabbage</span></label>
+    <label><input type="checkbox" id="s7"><span>Kimchi</span></label>
+    <label><input type="checkbox" id="s8"><span>Soba noodles</span></label>
+    <label><input type="checkbox" id="s9"><span>Lemon</span></label>
+    <label><input type="checkbox" id="s10"><span>Mayo (if out)</span></label>
+    <label><input type="checkbox" id="s11"><span>Soy sauce (if out)</span></label>
+    <label><input type="checkbox" id="s12"><span>Cornstarch (if out)</span></label>
+  </div>
+</section>
+
+<div class="foot">いただきます！ protein numbers are approximate, from raw weights</div>
+</div>
+
+<script>
+(function(){
+  var K='bento-shop';
+  var saved={};
+  try{saved=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  document.querySelectorAll('#shop input').forEach(function(cb){
+    if(saved[cb.id])cb.checked=true;
+    cb.addEventListener('change',function(){
+      saved[cb.id]=cb.checked;
+      try{localStorage.setItem(K,JSON.stringify(saved))}catch(e){}
+    });
+  });
+})();
+</script>
